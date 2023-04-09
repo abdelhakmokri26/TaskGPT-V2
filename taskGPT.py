@@ -68,7 +68,7 @@ if selected == 'TaskGPT':
         if len(options) > 0:
             messages.append({"role": "user", "content": 'include in the response: ' + ' and '.join(str(option) for option in options) + 'for each task'})
 
-
+        platform_options = st.selectbox('Choose a platform', ('Web', 'Mobile', 'Desktop'))
         file = st.file_uploader('upload file')
     if user_input or send:
         output = generate_response(user_input)
