@@ -11,6 +11,19 @@ st.set_page_config(layout="wide")
 
 openai.api_key = st.secrets["api_secret"]
 
+with open('about.txt', 'r') as file:
+    # Load the JSON data
+    about = file.read()
+
+with open('how_it_works.txt', 'r') as file:
+    # Load the JSON data
+    how_it_works = file.read()
+
+with open('future.txt', 'r') as file:
+    # Load the JSON data
+    future = file.read()
+
+
 with open('frameworks.json', 'r') as file:
     # Load the JSON data
     frameworks = json.load(file)
@@ -102,3 +115,25 @@ if selected == 'TaskGPT':
                 for i in range(len(st.session_state['generated']) - 1, -1, -1):
                     message(st.session_state["generated"][i], key=str(i), avatar_style='icons')
                     message(st.session_state['past'][i], is_user=True, key=str(i) + '_user', avatar_style='shapes')
+
+if selected == 'How it works':
+    text = ":writing_hand: "+str(how_it_works)
+    st.subheader(':warning: Note: This App is currently using ChatGPT API')
+    st.divider()
+    st.markdown(text)
+    st.image("img/chatGPT-API.png")
+
+
+if selected == 'Future':
+    text = str(future)
+    st.subheader(':first_place_medal: Our Vision')
+    st.divider()
+    st.markdown(text)
+
+if selected == 'About':
+    text = str(about)
+    st.subheader(':information_source: About')
+    st.divider()
+    st.markdown(text)
+
+    st.write("[Contact Me](https://abdelhakmokri.pythonanywhere.com/contact/)")
