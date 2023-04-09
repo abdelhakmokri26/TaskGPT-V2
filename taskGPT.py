@@ -5,16 +5,23 @@ from streamlit_option_menu import option_menu
 
 # pip install streamlit-chat
 from streamlit_chat import message
-
+import json
 
 st.set_page_config(layout="wide")
 
 openai.api_key = st.secrets["api_secret"]
 
+with open('frameworks.json', 'r') as file:
+    # Load the JSON data
+    frameworks = json.load(file)
+
 messages = [{"role": "system",
-             "content": "Give me full list of tasks for the following project and Explain things like you're a product manager and product owner with more than 6 years of "
+             "content": "Provide full detailed lists of jira like tasks for the following project or any question regarding "
+                        "creating tasks for developers and Explain things like you're a"
+                        "product manager and product owner with more than 10 years of"
                         "experience and has experience as fullstack developer, and you are talking to a software "
                         "professional with 2 years of experience."}]
+
 # Creating the chatbot interface
 st.title(":cyclone: :blue[_TasksGPT:_]")
 st.header('**_ChatGPT_** for PMs & Product Owners')
@@ -34,12 +41,12 @@ if selected == 'TaskGPT':
             messages.append({"role": "user", "content": prompt})
             print(messages)
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo", #text-davinci-002-render-sha
-                messages=messages
-
+                model="gpt-3.5-turbo",  # text-davinci-002-render-sha
+                messages=messages,
             )
-            print(response)
-            message = response.choices[0]["message"]["content"]
+
+            message = response.choices[0]['message']["content"]
+
             return message
 
 
@@ -66,11 +73,25 @@ if selected == 'TaskGPT':
             'Include more detais',
             ['Acceptance Criteria', 'Steps to build', 'Estimated Time'])
         if len(options) > 0:
-            messages.append({"role": "user", "content": 'include in the response: ' + ' and '.join(str(option) for option in options) + 'for each task'})
+            messages.append({"role": "user", "content": 'include in the response: ' + ' and '.join(
+                str(option) for option in options) + 'for each task'})
 
-        platform_options = st.selectbox('Choose a platform', ('Web', 'Mobile', 'Desktop'))
+        platform_options = st.selectbox('Choose a platform', ('', 'Web', 'Mobile', 'Desktop'))
+        project_managment = (pmt for pmt in [''] + frameworks["Project Managment"])
+
+        project_management_tool = st.selectbox('Choose your project management tool', project_managment)
+        functionality = st.selectbox('Functionality', ('', 'New feature', 'Upgrade', 'Reported issue', 'Bug'))
+        print(project_management_tool)
         file = st.file_uploader('upload file')
+
+        if project_management_tool != '':
+            messages.append({"role": "user", "content": 'Create a ' + project_management_tool + ' like tasks for this ' + (functionality if functionality != '' else 'project:') })
+
+        if platform_options != '':
+            messages.append({"role": "user", "content": 'bare in mind that this a ' + platform_options + ' App'})
+
     if user_input or send:
+
         output = generate_response(user_input)
         # store the output
         st.session_state.past.append(user_input)

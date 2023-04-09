@@ -1,0 +1,19 @@
+{
+
+  "Web": ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue.js", "jQuery", "Bootstrap", "Node.js", "Express.js", "Ruby on Rails", "Django", "Flask", "Laravel", "ASP.NET", "Spring", "Hibernate"],
+  "Desktop":["JavaFX", ".NET", "Electron", "Qt", "WPF", "WinForms", "GTK+", "Cocoa", "Tkinter", "wxWidgets", "Swing", "Java 2D", "Allegro"],
+  "Mobile": ["Swift", "Objective-C", "Kotlin", "Java", "React Native, Flutter, Ionic, PhoneGap, Xamarin, Cordova"],
+  "Containerization": ["Docker, Kubernetes, OpenShift, Amazon ECS, Google Kubernetes Engine"],
+  "Cloud Platforms": ["Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud, DigitalOcean"],
+  "Project Managment": ["Asana", "Trello", "Jira", "Basecamp", "Monday.com", "Wrike", "Zoho Projects", "Microsoft Project", "ClickUp", "Smartsheet", "Notion", "Airtable",
+"Teamwork",
+"Podio",
+"Redmine",
+"MeisterTask",
+"Todoist",
+"Freedcamp",
+"Bitrix24",
+"ActiveCollab"]
+}
+
+
