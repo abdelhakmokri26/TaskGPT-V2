@@ -78,7 +78,6 @@ if selected == 'TaskGPT':
         user_input = get_text()
 
         send = st.button('Send', use_container_width=True)
-        messages.append({"role": "user", "content": 'create a detailed tasks for the following: ' + user_input})
 
 
         options = st.multiselect(
