@@ -38,7 +38,7 @@ st.header('**_ChatGPT_** for PMs & Product Owners')
 st.divider()
 
 with st.sidebar:
-    selected = option_menu("Menu", ["TaskGPT", 'How it works', 'Future', 'About', 'Research'],
+    selected = option_menu("Menu", ["TaskGPT", 'How it works', 'Vision', 'About', 'Research'],
                            icons=['house', 'code-square', 'robot', 'info-square', 'book-half'], menu_icon="cast",
                            default_index=0)
 
@@ -123,7 +123,7 @@ if selected == 'How it works':
     st.image("img/chatGPT-API.png")
 
 
-if selected == 'Future':
+if selected == 'Vision':
     text = str(future)
     st.subheader(':first_place_medal: Our Vision')
     st.divider()
