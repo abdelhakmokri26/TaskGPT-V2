@@ -38,8 +38,8 @@ st.header('**_ChatGPT_** for PMs & Product Owners')
 st.divider()
 
 with st.sidebar:
-    selected = option_menu("Menu", ["TaskGPT", 'How it works', 'Vision', 'About', 'Research'],
-                           icons=['house', 'code-square', 'robot', 'info-square', 'book-half'], menu_icon="cast",
+    selected = option_menu("Menu", ["TaskGPT", 'How it works', 'Demo', 'Vision', 'About', 'Research'],
+                           icons=['house', 'code-square', 'file-earmark-play', 'robot', 'info-square', 'book-half'], menu_icon="cast",
                            default_index=0)
 
 if selected == 'TaskGPT':
@@ -121,12 +121,21 @@ if selected == 'How it works':
     st.markdown(text)
     st.image("img/chatGPT-API.png")
 
+if selected == 'Demo':
+    st.subheader(':tv: Demo')
+    st.divider()
+    video_file = open('video.mp4', 'rb')
+    video_bytes = video_file.read()
 
+    st.video(video_bytes)
+    
+    
 if selected == 'Vision':
     text = str(future)
     st.subheader(':first_place_medal: Our Vision')
     st.divider()
     st.markdown(text)
+    
 
 if selected == 'About':
     text = str(about)
