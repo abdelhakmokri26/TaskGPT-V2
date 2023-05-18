@@ -29,11 +29,8 @@ with open('frameworks.json', 'r') as file:
     frameworks = json.load(file)
 
 messages = [{"role": "system",
-             "content": "Provide full detailed lists of jira like tasks for the following project or any question regarding "
-                        "creating tasks for developers and Explain things like you're a"
-                        "product manager and product owner with more than 10 years of"
-                        "experience and has experience as fullstack developer, and you are talking to a software "
-                        "professional with 2 years of experience."}]
+            "content": "Provide full detailed of the following information about the [task or user story]: Task/user story, Description of the task/user story, Estimated effort required, Due datelists, and Explain things like you're a product manager and product owner. Additionally, please provide any relevant notes or comments that may be useful for completing the task or user story. Ideally, I'd like these details to be provided in an easy-to-read format, such as a table or list. I'd also like the information to be up-to-date and accurate, If I need details on a specific user story or task, I'll provide you with the task name. Please let me know if you need any additional information or context to provide these details. "}]
+
 
 # Creating the chatbot interface
 st.title(":cyclone: :blue[_TasksGPT:_]")
@@ -81,6 +78,8 @@ if selected == 'TaskGPT':
         user_input = get_text()
 
         send = st.button('Send', use_container_width=True)
+        messages.append({"role": "user", "content": 'create a detailed tasks for the following: ' + user_input})
+
 
         options = st.multiselect(
             'Include more detais',
